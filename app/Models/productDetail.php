@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class productDetail extends Model
 {
     use HasFactory;
+
+    protected $table = 'product_details';
+
+    protected $fillable = [
+        'image',
+        'product_id',
+    ];
 }
