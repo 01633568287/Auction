@@ -52,9 +52,13 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'address' => ['required', 'string'],
+            'phone' => ['required', 'numeric', 'digits:10'],
+            'card_number' => ['required', 'numeric'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ]); 
     }
+
 
     /**
      * Create a new user instance after a valid registration.
@@ -62,11 +66,21 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
+    public function messages()
+    {
+        return [
+            'name.required' => 'A title is requireddddddddd',
+            'body.required' => 'A message is required',
+        ];
+    }
     protected function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'address' => $data['address'],
+            'phone' => $data['phone'],
+            'card_number' => $data['card_number'],
             'password' => Hash::make($data['password']),
         ]);
     }
