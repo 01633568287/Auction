@@ -20,7 +20,7 @@ class CreateAuctionsTable extends Migration
             $table->string('status', 50);
             $table->bigInteger('start_price');
             $table->bigInteger('step_price');
-            $table->bigInteger('highset_price');
+            $table->bigInteger('highest_price');
             $table->integer('winner_id');
             // $table->unsignedBigInteger('winner_id');
             // $table->foreign('winner_id')->references('user_id')->on('bids');

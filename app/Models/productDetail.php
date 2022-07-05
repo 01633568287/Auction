@@ -15,4 +15,9 @@ class productDetail extends Model
         'image',
         'product_id',
     ];
+
+    public function product()
+    {
+        return $this->hasOne(Product::class);
+    }
 }
