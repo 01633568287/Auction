@@ -13,14 +13,14 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Product name</th>
-                <th>Price</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Name Active</th>
-                <th>User Id</th>
-                <th>Auction Id</th>
-               
+                <th>Name</th>
+                <th>Start Time</th>
+                <th>Close Time</th>
+                <th>Status</th>
+                <th>Start Price</th>
+                <th>Step Price</th>
+                <th>highset_price</th>
+                <th>winner_id</th>
                 <th class="text-right">Action</th>
             </tr>
         </thead>
@@ -28,21 +28,29 @@
             @foreach ($data as $model)
                 <tr>
                     <td>{{ $model->id }}</td>
-                    <td>{{$model->product_name}}</td>
-                    <td>{{ $model->price }}</td>
-                    <td>{{ $model->image }}</td>
-                    <td>{{ $model->description }}</td>
-                    <td>{{ $model->name_active }}</td>
-                    <td>{{ $model->user_id }}</td>
-                    <td>{{ $model->auction_id }}</td>
-                  
+                    <td>{{$model->name}}</td>
+                    <td>{{ $model->start_time }}</td>
+                    <td>{{ $model->close_time }}</td>
+                    <td>
+                        @if ($model->status == 0)
+                            <span class="badge badge-danger">Priview</span>
+                        @else
+                            <span class="badge badge-success">Publish</span>
+                        @endif
+                    </td>
+                    <td>{{ $model->start_price }}</td>
+                    <td>{{ $model->step_price }}</td>
+                    <td>{{ $model->highest_price }}</td>
+                    <td>{{ $model->winner_id }}</td>
+                    
+
                     <td class="text-right">
                         
                             
-                            <a href="{{route('product.edit',$model->id)}}" class="btn btn-sm btn-success">
+                            <a href="{{route('auction.edit',$model->id)}}" class="btn btn-sm btn-success">
                                 <i class="fas fa-edit"></i>
                             </a>
-                            <a href="{{route('product.destroy',$model->id)}}" class="btn btn-sm btn-danger btndelete">
+                            <a href="{{route('auction.destroy',$model->id)}}" class="btn btn-sm btn-danger btndelete">
                                 <i class="fas fa-trash"></i>
                             </a>
                         

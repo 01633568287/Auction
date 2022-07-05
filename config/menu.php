@@ -19,6 +19,20 @@ return[
             ]
             
         ]
+    ],[
+        'label'=>'Auction Manager',
+        'route'=>'auction.index',
+        'icon'=>'fa-shopping-cart',
+        'item'=>[
+            [
+                'label'=>'All Auction',
+                'route'=>'auction.index',
+            ],[
+                'label'=>'Create Auction',
+                'route'=>'auction.create',
+            ]
+            
+        ]
     ]
 ]
 ?>

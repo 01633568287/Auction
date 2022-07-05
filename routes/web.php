@@ -31,6 +31,7 @@ Route::group(['prefix'=>'admin'],function(){
 
     Route::resources([
         'product'=>'ProductController',
+        'auction'=>'AuctionController',
     ]);
 });
 
