@@ -20,4 +20,12 @@ class Auction extends Model
         'highest_price',
         'winner_id',
     ];
+
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
+
+    public function bids(){
+        return $this->hasMany(Bid::class);
+    }
 }

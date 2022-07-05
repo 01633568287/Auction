@@ -21,6 +21,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/input-product', function () {
+    return view('product');
+});
+
 
 Route::group(['prefix'=>'admin'],function(){
     Route::get('/','AdminController@dashboard')->name('admin.dashboard');
@@ -30,3 +34,32 @@ Route::group(['prefix'=>'admin'],function(){
         'auction'=>'AuctionController',
     ]);
 });
+
+Route::get('n-n', function () {
+    $users = App\Models\User::all();
+    foreach($users as $user)
+    {
+        echo $user->name;
+        echo '<br>';
+        foreach($user->roles as $role)
+        {
+            echo $role->role;
+        }
+        echo '<hr>';
+    }
+});
+
+Route::get('1-n', function () {
+    $auctions = App\Models\Auction::all();
+    foreach($auctions as $auction)
+    {
+        echo $auction->id;
+        echo '<br>';
+        foreach($auction->products as $prod)
+        {
+            echo $prod->product_name;
+        }
+        echo '<hr>';
+    }
+});
+

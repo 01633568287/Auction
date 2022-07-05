@@ -35,6 +35,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'product_name'=>'required',
             'price'=>'required',
@@ -48,6 +49,7 @@ class ProductController extends Controller
         if(Product::create($request->all())){
             return redirect()->route('product.index')->with('success', 'Thêm mới sản phẩm thành công');
         }
+
     }
 
     /**
