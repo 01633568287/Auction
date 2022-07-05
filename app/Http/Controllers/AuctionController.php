@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Product;
+use App\Models\Auction;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class AuctionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data = Product::orderBy('created_at', 'DESC')->paginate(10);
-        return view('admin.product.index', compact('data'));
+        $data = Auction::orderBy('created_at', 'DESC')->paginate(10);
+
+        return view('admin.auction.index', compact('data'));
     }
 
     /**
@@ -24,7 +25,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product.create');
+        $cats=Auction::orderBy('name','ASC')->select('id','name')->get();
+        return view('admin.auction.create', compact('cats'));
     }
 
     /**
@@ -35,18 +37,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'product_name'=>'required',
-            'price'=>'required',
-            'description'=>'required'
-        ],[
-            'product_name.required'=>'Tên danh mục không được để trống',
-            'price.required'=>'Thứ tự ưu tiên không được để trống',
-            'description.required'=>'Thứ tự ưu tiên không được để trống',
-           
-        ]);
-        if(Product::create($request->all())){
-            return redirect()->route('product.index')->with('success', 'Thêm mới sản phẩm thành công');
+        if(Auction::create($request->all())){
+            return redirect()->route('auction.index')->with('success', 'Thêm mới sản phẩm thành công');
         }
     }
 
