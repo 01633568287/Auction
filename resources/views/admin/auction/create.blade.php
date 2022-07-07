@@ -23,7 +23,7 @@
                         <small class="help-block">{{ $message }}</small>
                     @enderror
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="">Status</label>
                     <div class="radio">
                         <label>
@@ -33,16 +33,24 @@
                             <input type="radio" name="status" value="1">Publish
                         </label>
                     </div>
-                </div>
-
-               
+                </div> --}}
                 <div class="form-group">
-                    <label for="">Description</label>
-                    <textarea type="text" id="content" class="form-control" name="description" placeholder="Product Description"></textarea>
-                    @error('description')
+                    <label for="">Giá cao nhất</label>
+                    <input type="text" class="form-control" name="highest_price" placeholder="Giá cao nhất">
+                    @error('highest_price')
                         <small class="help-block">{{ $message }}</small>
                     @enderror
                 </div>
+                <div class="form-group">
+                    <label for="">Winner Id</label>
+                    <input type="hidden" class="form-control" name="winner_id" placeholder="Giá cao nhất">
+                    @error('winner_id')
+                        <small class="help-block">{{ $message }}</small>
+                    @enderror
+                </div>
+              
+               
+                
                 
             </div>
             <div class="col-md-6">
@@ -68,21 +76,7 @@
                         <small class="help-block">{{ $message }}</small>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label for="">Giá cao nhất</label>
-                    <input type="text" class="form-control" name="highest_price" placeholder="Giá cao nhất">
-                    @error('highest_price')
-                        <small class="help-block">{{ $message }}</small>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="">Winner Id</label>
-                    <input type="hidden" class="form-control" name="winner_id" placeholder="Giá cao nhất">
-                    @error('winner_id')
-                        <small class="help-block">{{ $message }}</small>
-                    @enderror
-                </div>
-              
+               
                
             </div>
         </div>

@@ -38,7 +38,7 @@ class AuctionController extends Controller
     public function store(Request $request)
     {
         if(Auction::create($request->all())){
-            return redirect()->route('auction.index')->with('success', 'Thêm mới sản phẩm thành công');
+            return redirect()->route('auction.index')->with('success', 'Thêm mới phiên đấu giá thành công');
         }
     }
 
@@ -59,9 +59,9 @@ class AuctionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Auction $auction)
     {
-        //
+        return view('admin.auction.edit',compact('auction'));
     }
 
     /**
@@ -71,9 +71,10 @@ class AuctionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Auction $auction)
     {
-        //
+        $auction->update($request->only('name','start_time','close_time','status','start_price','step_price','highest_price','winner_id'));
+        return redirect()->route('auction.index')->with('success', 'Cập nhật phiên đấu giá thành công');
     }
 
     /**
@@ -82,8 +83,13 @@ class AuctionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Auction $auction)
     {
-        //
+        if ($auction->products->count() > 0) {
+            return redirect()->route('auction.index')->with('error', ' không thể xóa danh mục đang có sản phẩm');
+        } else {
+            $auction->delete();
+            return redirect()->route('auction.index')->with('success', 'Xóa danh mục thành công');
+        }
     }
 }
